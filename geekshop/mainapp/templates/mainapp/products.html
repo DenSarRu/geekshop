@@ -9,15 +9,17 @@
 		<div class="hero-white">
 			{% include 'geekshop\includes\inc_menu.html' %}
 		</div>
-
 		<div class="details">
 			<div class="links clearfix">
 				<ul class="links-menu">
-					{% for link in links_menu %}
-						<li><a href="{{ link.href }}" class="{% if request.resolver_match.url_name == link.href %}
-						active
-						{%endif%}">{{ link.name }}</a></li>
-					{% endfor%}
+					<li><a href="{% url 'products:main' %}" class="{% if request.resolver_match.url_name == 'main' %}
+							active
+						{% endif %}">все</a></li>
+					{% for category in product_category_list %}
+						<li><a href="{{ category.id }}" class="{% if request.resolver_match.url_name == link.href %}
+							active
+						{% endif %}">{{ category.name }}</a></li>
+					{% endfor %}
 				</ul>
 			</div>
 
@@ -69,34 +71,17 @@
 					<a class="explore" href="#">показать все <img src="{% static '/geekshop/img/arrow.png' %}" alt=""></a>
 				</div>
 				<div class="related-products clearfix">
-					<div class="block">
-						<a href="#"><img src="{% static '/geekshop/img/product-11.jpg' %}" alt="">
-							<div class="text">
-								<img src="{% static '/geekshop/img/icon-hover.png' %}" alt="img">
-								<h4>Стул повышенного качества</h4>
-								<p>Не оторваться. </p>
-							</div>
-						</a>
-					</div>
-					<div class="block">
-						<a href="#"><img src="{% static '/geekshop/img/product-21.jpg' %}" alt="">
-							<div class="text">
-								<img src="{% static '/geekshop/img/icon-hover.png' %}" alt="img">
-								<h4>Стул повышенного качества</h4>
-								<p>Не оторваться. </p>
-							</div>
-						</a>
-					</div>
-					<div class="block">
-						<a href="#"><img src="{% static '/geekshop/img/product-31.jpg' %}" alt="">
-							<div class="text">
-								<img src="{% static '/geekshop/img/icon-hover.png' %}" alt="img">
-								<h4>Стул повышенного качества</h4>
-								<p>Не оторваться. </p>
-							</div>
-						</a>
-					</div>
-
+					{% for product in products_list%}
+						<div class="block">
+							<a href="#"><img src="/media//{{ product.image }}" alt="">
+								<div class="text">
+									<img src="{% static '/geekshop/img/icon-hover.png' %}" alt="img">
+									<h4>{{ product.short_desc }}</h4>
+									<p>{{ product.description }} </p>
+								</div>
+							</a>
+						</div>
+					{% endfor %}
 				</div>
 			</div>
 		</div>
