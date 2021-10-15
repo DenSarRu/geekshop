@@ -6,7 +6,7 @@ menu_item = [
     {'href': 'main', 'name': 'домой'},
     {'href': 'products:main', 'name': 'продукты'},
     {'href': 'contacts', 'name': 'контакты'},
-    {'href': 'not_works_page', 'name': 'страница не работает'},
+    #{'href': 'not_works_page', 'name': 'страница не работает'},#
 ]
 
 
