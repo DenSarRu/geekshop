@@ -71,6 +71,15 @@ html, body {
 	font-weight: 700;
 	border-bottom: 3px solid #212121;
 }
+.user {
+    display: block;
+	width: 23px;
+	height: 23px;
+	background-image: url(img/user.png);
+	position: absolute;
+	top: 63px;
+    left: 1243px;
+}
 
 .search {
 	display: block;
@@ -83,9 +92,7 @@ html, body {
 }
 .basket {
 	display: block;
-	width: 23px;
-	height: 23px;	
-	background-image: url(img/basket.png);
+	height: 23px;
 	position: absolute;
 	top: 63px;
 	left: 1210px;

@@ -1,6 +1,7 @@
 from django.shortcuts import render, HttpResponseRedirect
 from authapp.forms import ShopUserLoginForm, ShopUserRegisterForm, ShopUserEditForm
 from django.contrib import auth
+from django.contrib import messages
 from django.urls import reverse
 
 
@@ -55,7 +56,11 @@ def edit(request):
         edit_form = ShopUserEditForm(request.POST, request.FILES, instance=request.user)
         if edit_form.is_valid():
             edit_form.save()
+            messages.success(request, 'Profile updated successfully')
             return HttpResponseRedirect(reverse('auth:edit'))
+        else:
+            messages.error(request, 'Error updating your profile')
+
     else:
         edit_form = ShopUserEditForm(instance=request.user)
 

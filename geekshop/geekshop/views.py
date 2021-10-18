@@ -1,4 +1,6 @@
 from django.shortcuts import render
+
+from basketapp.models import Basket
 from mainapp.models import Product, Contacts
 
 menu_item = [
@@ -7,6 +9,13 @@ menu_item = [
     {'href': 'contacts', 'name': 'контакты'},
     # {'href': 'not_works_page', 'name': 'страница не работает'},#
 ]
+
+
+def basket_check(request):
+    basket = []
+    if request.user.is_authenticated:
+        basket = Basket.objects.filter(user=request.user)
+    return basket
 
 
 def main(request):
@@ -18,6 +27,7 @@ def main(request):
         'title': title,
         'menu_item': menu_item,
         'products': products,
+        'basket': basket_check(request),
     }
     return render(request, 'geekshop/index.html', context)
 
@@ -31,6 +41,7 @@ def contacts(request):
         'title': title,
         'menu_item': menu_item,
         'contact_list': contact_list,
+        'basket': basket_check(request),
     }
     return render(request, 'geekshop/contact.html', context)
 

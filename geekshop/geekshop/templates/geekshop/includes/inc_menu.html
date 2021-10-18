@@ -1,3 +1,4 @@
+{% load static %}
 			<div class="header">
 				<ul class="menu">
 					{% if user.is_authenticated %}
@@ -26,6 +27,10 @@
 					{% endfor %}
 				</ul>
 				<a href="#" class="search"></a>
-                <a href="#" class="basket"></a>
+				<a href="{% url 'basket:main' %}" class="basket">
+				<span>
+					<img src="{% static '/geekshop/img/basket' %}.png" alt="Корзина">
+					{% if basket %} {{ basket|length }} {% endif %} (шт.)
+				</span>
+				</a>
 			</div>
-

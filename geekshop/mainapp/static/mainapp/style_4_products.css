@@ -22,6 +22,8 @@ html, body {
 	min-height: 100%;
 }
 
+
+
 .logo {
 	background-image: url(img/logo.png);
 	margin-top: 63px;
@@ -74,9 +76,7 @@ html, body {
 }
 .basket {
 	display: block;
-	width: 23px;
-	height: 23px;	
-	background-image: url(img/basket.png);
+	height: 23px;
 	position: absolute;
 	top: 63px;
 	left: 1210px;
@@ -570,6 +570,10 @@ td:first-child {
 .description-text p {
 	margin-bottom: 0.5em;
 }
+.category-products{
+	margin-bottom: 120px;
+}
+
 
 .related {
 	padding: 0px 98px;
