@@ -28,11 +28,11 @@
 				</ul>
 			</div>
 
-		{% if not category %}
+		{% if hot_product %}
 			<div class="details-products">
 				<div class="details-slider">
 					<div class="slider-product">
-						<img src="{% static '/geekshop/img/slider1.jpg' %}">
+						<a href="{% url 'products:detail' hot_product.pk %}"><img src="/media/{{ hot_product.image }}" class="slider-image"></a>
 					</div>
 					<div class="slider-control">
 						<div class="block">
@@ -53,22 +53,18 @@
 					</div>
 				</div>
 				<div class="description">
-					<h3 class="big-bold">Отличный стул</h3>
+					<h3 class="big-bold">{{ hot_product.name }}</h3>
 					<h3 class="red">горячее предложение<br><br>действует {%  now "SHORT_DATE_FORMAT" %}</h3>
-					<p class="price"> 2585.9 <span>руб</span></p>
-					<a href="#" class="red-button">
+					<p class="price"> {{ hot_product.price }} <span>руб</span></p>
+					<a href="{% url 'basket:add' hot_product.pk %}" class="red-button">
 						заказать <i class="fa fa-chevron-right" aria-hidden="true"></i>
 					</a>
 					<div class="description-text">
-						<p>Расположитесь комфортно.</p> 
-						<p>Отличное качество материалов	позволит вам это.</p>
-						<p>Различные цвета</p>
-						<p>высочайший уровень эргономики и прочность.</p>
+						<p>{{ hot_product.description }}</p>
 					</div>
 				</div>
 			</div>
 			{% else %}
-
 			<div class="row" style="padding: 0px 98px">
 				<div class="">
 					<h5 class="big-bold" style="padding-top: 20px">Категория: {{ category.name|title }}</h5>
@@ -76,7 +72,14 @@
 				{% for product in products_list %}
 					<div class="col-sm-4 vh-100">
 						<div class="card vh-100 text-center" style="">
-							<img src="/media/{{ product.image }}" class="card-img-top" alt="{{ product.short_desc }}">
+							<div class="block">
+								<a href="{% url 'products:detail' product.pk %}"><img src="/media/{{ product.image }}" class="card-img-top" alt="">
+									<div class="text">
+										<img src="{% static '/geekshop/img/icon-hover.png' %}" alt="img">
+										<h4>Описание товара</h4>
+									</div>
+								</a>
+							</div>
 							<div class="card-body">
 								<h5 class="card-title">{{ product.name }}</h5>
 								<p class="card-text">{{ product.description }}</p>
@@ -86,9 +89,10 @@
 					</div>
 				{% endfor %}
 			</div>
-
 		{% endif %}
-		<div class="related">
+
+		{% if same_products %}
+			<div class="related">
 			<div class="title clearfix">
 				<h2>Похожие продукты</h2>
 				<a class="explore" href="{% url 'products:category' category.pk|add:'0' %}">показать все
@@ -98,7 +102,7 @@
 			<div class="related-products clearfix">
 				{% for same_product in same_products %}
 					<div class="block">
-						<a href="#"><img src="/media/{{ same_product.image }}" alt="">
+						<a href="{% url 'products:detail' same_product.pk %}"><img src="/media/{{ same_product.image }}" alt="">
 							<div class="text">
 								<img src="{% static '/geekshop/img/icon-hover.png' %}" alt="img">
 								<h4>{{ same_product.name }}</h4>
@@ -109,6 +113,7 @@
 				{% endfor %}
 			</div>
 		</div>
+		{% endif %}
 	</div>
 
 {% endblock %}

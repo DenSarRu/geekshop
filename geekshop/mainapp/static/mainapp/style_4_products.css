@@ -22,8 +22,6 @@ html, body {
 	min-height: 100%;
 }
 
-
-
 .logo {
 	background-image: url(img/logo.png);
 	margin-top: 63px;
@@ -40,6 +38,7 @@ html, body {
 .menu li {
 	float: left;
 }
+
 .menu a {
 	color: #8c8c8c;
 	font-size: 14px;
@@ -131,6 +130,7 @@ html, body {
 	height: 152px;
 	margin-right: 15px;
 }
+
 .title h2 {
 	float: left;
 	margin-top: 118px;
@@ -139,7 +139,6 @@ html, body {
 	font-weight: 700;
 	text-align: left;
 	margin-left: 15px;
-
 }
 
 .red {
@@ -467,6 +466,12 @@ td:first-child {
 	width: 570px;
 	height: 570px;
 }
+
+.slider-image{
+    margin: auto;
+    height:100%;
+}
+
 .slider-control {
 	width: 420px;
 	height: 70px;
@@ -505,7 +510,7 @@ td:first-child {
 	font-weight: 700;
 	text-align: center;
 	margin-top: 47px;
-	margin-bottom: 0px;
+	margin-bottom: 24px;
 }
 .description .red {
 	text-transform: uppercase;
@@ -565,7 +570,7 @@ td:first-child {
 	font-size: 16px;
 	font-weight: 300;
 	line-height: 24px;
-	text-align: left;
+	text-align: center;
 }
 .description-text p {
 	margin-bottom: 0.5em;
@@ -635,5 +640,50 @@ td:first-child {
 	margin-top: 80px;
 }
 .related-products a:hover .text{
+	display: block;
+}
+
+.card    .block {
+	float: left;
+	margin-right: 30px;
+	display: block;
+	height: 370px;
+	width: 370px;
+	position: relative;
+}
+
+.card .block:nth-child(3n) {
+	margin-right: 0px;
+}
+.card a .text {
+	display: none;
+	height: 368px;
+	width: 368px;
+	background-color: #ffffff;
+    opacity: 0.9;
+    position: absolute;
+    top: 0;
+    text-align: center;
+    border: 1px solid #9c9c9c;
+}
+.card a .text h4 {
+	color:  #212121;
+	font-size: 30px;
+	font-weight: 700;
+	line-height: 30px;
+	text-align: center;
+}
+.card a .text p {
+	color:  #6c6c6c;
+	font-size: 20px;
+	font-weight: 300;
+	text-align: center;
+	margin: 15px 15px;
+}
+.card a .text img {
+	float: none;
+	margin-top: 80px;
+}
+.card a:hover .text{
 	display: block;
 }

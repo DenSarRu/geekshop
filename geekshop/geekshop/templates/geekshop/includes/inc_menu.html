@@ -26,11 +26,24 @@
 						{%endif%}">{{ item.name }}</a>
 					{% endfor %}
 				</ul>
-				<a href="#" class="search"></a>
-				<a href="{% url 'basket:main' %}" class="basket">
-				<span>
-					<img src="{% static '/geekshop/img/basket' %}.png" alt="Корзина">
-					{% if basket %} {{ basket|length }} {% endif %} (шт.)
-				</span>
-				</a>
+				<div>
+					<a href="#" class="search"></a>
+				</div>
+				<div>
+					<a href="{% url 'basket:main' %}" class="basket">
+					{% if request.resolver_match.app_name != 'basketapp' %}
+						{% if basket %}
+						<span class="basket_text" style="    box-sizing: border-box; background-color: #f4f4f4; display: inline-block;
+							top: -40%; left: 50%; text-align: center; min-width: 20px; line-height: 20px; font-size: 12px; position: absolute;
+							border-radius: 20px">
+							{{ basket.0.total_quantity }}
+						</span>
+						{% endif %}
+					{% endif %}
+						<img src="{% static '/geekshop/img/basket' %}.png" alt="Корзина">
+					</a>
+
+				</div>
 			</div>
+
+

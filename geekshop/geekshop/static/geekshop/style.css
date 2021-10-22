@@ -90,12 +90,27 @@ html, body {
 	top: 63px;
 	left: 1176px;
 }
+
 .basket {
 	display: block;
 	height: 23px;
 	position: absolute;
 	top: 63px;
 	left: 1210px;
+}
+
+.basket .basket_text {
+    box-sizing: border-box;
+    background-color: #f4f4f4;
+    display: inline-block;
+    top: -40%;
+    left: 50%;
+    text-align: center;
+    min-width: 20px;
+    line-height: 20px;
+    font-size: 12px;
+    position: absolute;
+    border-radius: 20px;
 }
 
 .clearfix:after {
@@ -303,6 +318,7 @@ html, body {
 .tab-content a .text img {
 	margin: 70px auto 0;
 }
+
 .tab-content a:hover .text {
 	display: block;
 }
