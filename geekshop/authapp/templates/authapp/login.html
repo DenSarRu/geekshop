@@ -2,8 +2,9 @@
 {% load static %}
 
 {% block content %}
-    <div class="h2 text-center head"> Вход в систему </div>
-    <form class="form-horizontal" action="{% url 'auth:login' %}" method="post">
+
+    <form class="form-horizontal" action="{% url 'auth:login' %}" method="post" enctype=multipart/form-data>
+        <div class="h2 text-center head"> Вход в систему </div>
         {% csrf_token %}
         {% if next %}
             <input type="hidden" name="next" value="{{ next }}">

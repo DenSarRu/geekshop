@@ -75,10 +75,25 @@ html, body {
     display: block;
 	width: 23px;
 	height: 23px;
-	background-image: url(img/user.png);
 	position: absolute;
 	top: 63px;
-    left: 1243px;
+    left: 1210px;
+}
+
+.user img {
+    vertical-align: baseline;
+    height: 100%;
+    cursor: pointer;
+}
+
+.user_text {
+    top: 84px;
+    background-image: none;
+    color: #8c8c8c;
+    font-size: 10px;
+    text-align: right;
+    text-transform: uppercase;
+    text-decoration: none;
 }
 
 .search {
@@ -88,18 +103,34 @@ html, body {
 	background-image: url(img/search.png);
 	position: absolute;
 	top: 63px;
-	left: 1176px;
+	left: 1120px;
+}
+
+.search_text {
+    top: 84px;
+    background-image: none;
+    color: #8c8c8c;
+    font-size: 10px;
+    text-align: right;
+    text-transform: uppercase;
+    text-decoration: none;
 }
 
 .basket {
 	display: block;
 	height: 23px;
+	background-image: url(img/basket.png);
 	position: absolute;
 	top: 63px;
-	left: 1210px;
+	left: 1160px;
 }
 
-.basket .basket_text {
+.basket img{
+    vertical-align: baseline;
+    height: 100%;
+}
+
+.basket span{
     box-sizing: border-box;
     background-color: #f4f4f4;
     display: inline-block;
@@ -112,6 +143,17 @@ html, body {
     position: absolute;
     border-radius: 20px;
 }
+
+.basket_text {
+    top: 84px;
+    background-image: none;
+    color: #8c8c8c;
+    font-size: 10px;
+    text-align: right;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
 
 .clearfix:after {
 	content: "";

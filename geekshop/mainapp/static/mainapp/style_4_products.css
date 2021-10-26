@@ -64,21 +64,86 @@ html, body {
 	border-bottom: 3px solid #212121;
 }
 
-.search {
-	display: block;
+.user {
+    display: block;
 	width: 23px;
-	height: 23px;	
-	background-image: url(img/search.png);
-	position: absolute;
-	top: 63px;
-	left: 1176px;
-}
-.basket {
-	display: block;
 	height: 23px;
 	position: absolute;
 	top: 63px;
-	left: 1210px;
+    left: 1230px;
+}
+
+.user img {
+    vertical-align: baseline;
+    height: 100%;
+}
+
+.user_text {
+    top: 84px;
+    background-image: none;
+    color: #8c8c8c;
+    font-size: 10px;
+    text-align: right;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+.search {
+	display: block;
+	width: 23px;
+	height: 23px;
+	background-image: url(img/search.png);
+	position: absolute;
+	top: 63px;
+	left: 1120px;
+}
+
+.search_text {
+    top: 84px;
+    background-image: none;
+    color: #8c8c8c;
+    font-size: 10px;
+    text-align: right;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+.basket {
+	display: block;
+	height: 23px;
+	background-image: url(img/basket.png);
+	position: absolute;
+	top: 63px;
+	left: 1170px;
+}
+
+.basket img{
+    vertical-align: baseline;
+    height: 100%;
+}
+
+.basket span{
+    box-sizing: border-box;
+    background-color: #f4f4f4;
+    display: inline-block;
+    top: -40%;
+    left: 50%;
+    text-align: center;
+    min-width: 20px;
+    line-height: 20px;
+    font-size: 12px;
+    position: absolute;
+    border-radius: 20px;
+}
+
+.basket_text {
+    top: 84px;
+    background-image: none;
+    color: #8c8c8c;
+    font-size: 10px;
+    text-align: right;
+    text-transform: uppercase;
+    text-decoration: none;
 }
 
 .clearfix:after {
@@ -95,7 +160,6 @@ html, body {
 	font-weight: 100;
 	margin-bottom: 34px;
 }
-
 
 .explore {
 	text-transform: uppercase;
@@ -426,7 +490,7 @@ td:first-child {
 .links-menu li {
 	float: left;
 	list-style-type: none;
-	padding-right: 42px;
+	padding-right: 16px;
 }
 .links-menu li a {
 	text-decoration: none;

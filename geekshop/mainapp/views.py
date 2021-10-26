@@ -34,6 +34,12 @@ def products(request, pk=None):
     products_list = Product.objects.all().order_by('price')
     product_category_list = ProductCategory.objects.all()
 
+    for item in ProductCategory.objects.all():
+        if not products_list.filter(category=item).exists():
+            cat = product_category_list.filter(name=item)[0]
+            cat.is_active = False
+            cat.save()
+
     if pk is not None:
         if pk == 0:
             products_list = Product.objects.all().order_by('price')
@@ -41,6 +47,7 @@ def products(request, pk=None):
         else:
             category = get_object_or_404(ProductCategory, pk=pk)
             products_list = Product.objects.filter(category__pk=pk).order_by('price')
+            print(products_list)
 
         context = {
             'title': title,
