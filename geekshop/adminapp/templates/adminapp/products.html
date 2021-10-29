@@ -11,47 +11,53 @@
                 Товары
             </div>
             <div class="card-body">
+                <div class="paginator" style="text-align: center">
+                    {% if products.has_previous %}
+                        <a href="{% url 'admin_staff:page' category.pk products.previous_page_number %}">
+                          <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                        </a>
+                    {% endif %}
+                        <span class="current"> страница {{ products.number }} из {{ products.paginator.num_pages }} </span>
+                    {% if products.has_next %}
+                        <a href="{% url 'admin_staff:page' category.pk products.next_page_number %}">
+                            <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                        </a>
+                    {% endif %}
+                </div>
                 <div class="table-responsive">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
-                        <tr>
+                        <tr class="text-center">
                             <th>Наименование</th>
-                            <th>Категория</th>
-                            <th>Краткое описание</th>
+                            <th>Детали</th>
                             <th>Цена</th>
                             <th>Количество на складе</th>
-                            <th>Активный</th>
+                            <th>Редактировать</th>
                             <th>Удалить</th>
                         </tr>
                         </thead>
                         <tfoot>
-                        <tr>
+                        <tr class="text-center">
                             <th>Наименование</th>
-                            <th>Категория</th>
-                            <th>Краткое описание</th>
+                            <th>Детали</th>
                             <th>Цена</th>
                             <th>Количество на складе</th>
-                            <th>Активный</th>
+                            <th>Редактировать</th>
                             <th>Удалить</th>
                         </tr>
                         </tfoot>
                         <tbody>
                         {% for product in products %}
                         <tr {% if not product.is_active %} style="opacity: 0.5;" {% endif %}>
-                            <td><a href="{% url 'admin_staff:product_update' product.id %}" style="color: dodgerblue">{{
-                                product.name }}</a></td>
-                            <td>{{ product.category }}</td>
-                            <td>{{ product.short_desc }}</td>
-                            <td>{{ product.price }}</td>
-                            <td>{{ product.quantity }}</td>
+                            <td>{{ product.name }}</td>
+                            <td class="text-center"><a href="{% url 'admin_staff:product_read' product.id %}"
+                                                       style="color: dodgerblue">Подробнее</a></td>
+                            <td class="text-center">{{ product.price }}</td>
+                            <td class="text-center">{{ product.quantity }}</td>
                             <td class="text-center">
-                                {% if product.is_active %}
-                                <i class="fa fa-check-circle"></i>
-                                {% else %}
-                                <i class="fa fa-times-circle"></i>
-                                {% endif %}
+                                <a href="{% url 'admin_staff:product_update' product.id %}" style="color: dodgerblue">Edit</a>
                             </td>
-                            <td>
+                            <td class="text-center">
                                 <a {% if not product.is_active %} class="invisible" {% endif %}
                                    href="{% url 'admin_staff:product_delete' pk=product.id %}">
                                     <i class="fa fa-times-circle"></i>
@@ -64,7 +70,7 @@
                 </div>
             </div>
             <div class="card-footer">
-                <a href="{% url 'adminapp:user_create' %}">
+                <a href="{% url 'admin_staff:product_create' category.pk %}">
                     <button class="btn btn-success">Добавить товар</button>
                 </a>
             </div>

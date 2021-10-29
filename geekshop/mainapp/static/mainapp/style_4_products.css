@@ -519,6 +519,7 @@ td:first-child {
 	padding-left: 98px;
 	padding-right: 98px;
 	margin-top: 98px;
+	margin-bottom: 64px;
 	height: 651px; 
 }
 .details-slider {
@@ -750,4 +751,9 @@ td:first-child {
 }
 .card a:hover .text{
 	display: block;
+}
+
+.row{
+    justify-content: center;
+    margin-bottom: 64px;
 }

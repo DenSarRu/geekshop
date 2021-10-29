@@ -5,7 +5,7 @@
         <i class='bx bx-category-alt nav_icon'></i>
         <span class="nav_name">Категории товаров</span>
     </a>
-    <a href="{#% url 'admin_staff:products' %#}" class="nav_link {% if request.resolver_match.url_name == 'products' %}
+    <a href="{% url 'admin_staff:products' 0 %}" class="nav_link {% if request.resolver_match.url_name == 'page' %}
                 active
            {% endif %}">
         <i class='bx bx-collection nav_icon'></i>

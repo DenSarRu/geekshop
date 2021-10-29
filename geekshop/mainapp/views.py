@@ -1,8 +1,10 @@
-from django.shortcuts import render, get_object_or_404
-from basketapp.models import Basket
-from mainapp.models import Product, ProductCategory
 import random
 
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.shortcuts import render, get_object_or_404
+
+from basketapp.models import Basket
+from mainapp.models import Product, ProductCategory
 
 menu_item = [
     {'href': 'main', 'name': 'домой'},
@@ -28,33 +30,35 @@ def get_same_product(hot_product):
     return same_products
 
 
-def products(request, pk=None):
+def products(request, pk=None, page=1):
     title = 'Каталог'
 
     products_list = Product.objects.all().order_by('price')
-    product_category_list = ProductCategory.objects.all()
-
-    for item in ProductCategory.objects.all():
-        if not products_list.filter(category=item).exists():
-            cat = product_category_list.filter(name=item)[0]
-            cat.is_active = False
-            cat.save()
+    product_category_list = ProductCategory.objects.filter(is_active=True)
 
     if pk is not None:
         if pk == 0:
-            products_list = Product.objects.all().order_by('price')
-            category = {'name': 'Все'}
+            products_list = Product.objects.filter(is_active=True, category__is_active=True)
+            category = {'pk': 0, 'name': 'Все'}
         else:
             category = get_object_or_404(ProductCategory, pk=pk)
-            products_list = Product.objects.filter(category__pk=pk).order_by('price')
-            print(products_list)
+            products_list = Product.objects.filter(category__pk=pk, is_active=True, category__is_active=True)
+
+        paginator = Paginator(products_list, 2)
+
+        try:
+            products_paginator = paginator.page(page)
+        except PageNotAnInteger:
+            products_paginator = paginator.page(1)
+        except EmptyPage:
+            products_paginator = paginator.page(paginator.num_pages)
 
         context = {
             'title': title,
             'menu_item': menu_item,
             'product_category_list': product_category_list,
             'category': category,
-            'products_list': products_list,
+            'products_list': products_paginator,
             'basket': basket_check(request),
         }
         return render(request, 'mainapp/products.html', context)

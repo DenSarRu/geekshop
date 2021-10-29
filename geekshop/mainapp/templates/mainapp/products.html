@@ -13,27 +13,26 @@
 </div>
 
 <div class="details">
-    <div class="links clearfix" style="display: grid">
+    <div class="links clearfix">
         <ul class="links-menu" style="padding-left:0">
             <li><a href="{% url 'products:category' 0 %}" class="
 							{% if request.resolver_match.kwargs.pk == 0 %}
 								active
 							{% endif %}">все</a>
             </li>
-
             {% for category in product_category_list %}
-				{% if category.is_active %}
-					<li>
-						<a href="{% url 'products:category' category.pk %}" class="
+            {% if category.is_active %}
+            <li>
+                <a href="{% url 'products:category' category.pk %}" class="
 									{% if request.resolver_match.kwargs.pk|add:'0' == category.pk %}
 										active
 									{% endif %}"> {{ category.name }}</a></li>
-				{% endif %}
+            {% endif %}
             {% endfor %}
         </ul>
     </div>
     {% if hot_product %}
-    	<div class="details-products">
+    <div class="details-products">
         <div class="details-slider">
             <div class="slider-product">
                 <a href="{% url 'products:detail' hot_product.pk %}"><img src="/media/{{ hot_product.image }}"
@@ -71,26 +70,41 @@
     </div>
     {% else %}
     <div class="row" style="padding: 0px 98px">
-        <div class="">
+        <div class="title clearfix">
             <h5 class="big-bold" style="padding-top: 20px">Категория: {{ category.name|title }}</h5>
+            <div class="paginator" style="text-align: center">
+                {% if products_list.has_previous %}
+                <a href="{% url 'products:page' category.pk products_list.previous_page_number %}"> < </a>
+                {% endif %}
+                <span class="current"> страница {{ products_list.number }} из {{ products_list.paginator.num_pages }} </span>
+                {% if products_list.has_next %}
+                <a href="{% url 'products:page' category.pk products_list.next_page_number %}"> > </a>
+                {% endif %}
+            </div>
         </div>
         {% for product in products_list %}
-        <div class="col-sm-4 vh-100">
-            <div class="card vh-100 text-center" style="">
-                <div class="block">
-                    <a href="{% url 'products:detail' product.pk %}"><img src="/media/{{ product.image }}"
-                                                                          class="card-img-top" alt="">
-                        <div class="text">
-                            <img src="{% static '/geekshop/img/icon-hover.png' %}" alt="img">
-                            <h4>Описание товара</h4>
-                        </div>
-                    </a>
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title">{{ product.name }}</h5>
-                    <p class="card-text">{{ product.description }}</p>
-                    <a href="{% url 'basket:add' product.pk %}" class="btn btn-primary">Заказать</a>
-                </div>
+        <div class="card " style="width: 28rem;">
+            <div class="block text-center" style="margin:0 auto">
+                <a href="{% url 'products:detail' product.pk %}"><img src="/media/{{ product.image }}"
+                                                                      class="card-img-top" alt="">
+                    <div class="text">
+                        <img src="{% static '/geekshop/img/icon-hover.png' %}" alt="img">
+                        <h4>Описание товара</h4>
+                    </div>
+                </a>
+            </div>
+            <div class="card-body text-center">
+                <h5 class="card-title">{{ product.name }}</h5>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><p class="card-text"><b>Краткое описание:</b><br>{{ product.short_desc }}
+                </p>
+                </li>
+                <li class="list-group-item"><b>Цена:</b><br>{{ product.price }}</li>
+
+            </ul>
+            <div class="card-body text-center">
+                <a href="{% url 'basket:add' product.pk %}" class="btn btn-primary">Заказать</a>
             </div>
         </div>
         {% endfor %}
@@ -101,14 +115,14 @@
     <div class="related">
         <div class="title clearfix">
             <h2>Похожие продукты</h2>
-            <a class="explore" href="{% url 'products:category' category.pk|add:'0' %}">показать все
+            <a class="explore" href="{% url 'products:category' hot_product.category_id %}">показать все
                 <img src="{% static '/geekshop/img/arrow.png' %}" alt="">
             </a>
         </div>
         <div class="related-products clearfix">
             {% for same_product in same_products %}
             <div class="block">
-                <a href="{% url 'products:detail' same_product.pk %}"><img src="/media/{{ same_product.image }}" alt="">
+                <a href="{#% url 'products:detail' same_product.pk %#}"><img src="/media/{{ same_product.image }}" alt="" style="width: 100%">
                     <div class="text">
                         <img src="{% static '/geekshop/img/icon-hover.png' %}" alt="img">
                         <h4>{{ same_product.name }}</h4>

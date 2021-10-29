@@ -15,35 +15,32 @@
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                         <tr>
-                            <th>Имя пользователя</th>
-                            <th>Имя</th>
-                            <th>Фамилия</th>
-                            <th>Адрес эл. почты</th>
-                            <th>Персонал сайта</th>
-                            <th>Активный</th>
-                            <th>Вход</th>
-                            <th>Удалить</th>
+                            <th class="text-center">Имя пользователя</th>
+                            <th class="text-center">Детали</th>
+                            <th class="text-center">Редактировать</th>
+                            <th class="text-center">Персонал сайта</th>
+                            <th class="text-center">Активный</th>
+                            <th class="text-center">Последний вход</th>
+                            <th class="text-center">Удалить</th>
                         </tr>
                         </thead>
                         <tfoot>
                         <tr>
-                            <th>Имя пользователя</th>
-                            <th>Имя</th>
-                            <th>Фамилия</th>
-                            <th>Адрес эл. почты</th>
-                            <th>Персонал сайта</th>
-                            <th>Активный</th>
-                            <th>Вход</th>
-                            <th>Удалить</th>
+                            <th class="text-center">Имя пользователя</th>
+                            <th class="text-center">Детали</th>
+                            <th class="text-center">Редактировать</th>
+                            <th class="text-center">Персонал сайта</th>
+                            <th class="text-center">Активный</th>
+                            <th class="text-center">Последний вход</th>
+                            <th class="text-center">Удалить</th>
                         </tr>
                         </tfoot>
                         <tbody>
-                        {% for user in objects %}
+                        {% for user in object_list %}
                             <tr {% if not user.is_active %} style="opacity: 0.5;" {% endif %}>
-                                <td><a href="{% url 'admin_staff:user_update' user.id %}" style="color: dodgerblue">{{ user.username }}</a></td>
-                                <td>{{ user.first_name }}</td>
-                                <td>{{ user.last_name }}</td>
-                                <td>{{ user.email }}</td>
+                                <td>{{ user.username }}</td>
+                                <td class="text-center"><a href="{% url 'admin_staff:user_read' user.id %}" style="color: dodgerblue">Подробная информация</a></td></td>
+                                <td class="text-center"><a href="{% url 'admin_staff:user_update' user.id %}" style="color: dodgerblue">Редактировать</a></td></td>
                                 <td class="text-center">
                                     {% if user.is_staff %}
                                         <i class="fa fa-check-circle"></i>
@@ -58,8 +55,8 @@
                                         <i class="fa fa-times-circle"></i>
                                     {% endif %}
                                 </td>
-                                <td>{{ user.last_login }}</td>
-                                <td>
+                                <td class="text-center">{{ user.last_login }}</td>
+                                <td class="text-center">
                                     <a {% if not user.is_active %} class="invisible" {% endif %} href="{% url 'admin_staff:user_delete' pk=user.id %}">
                                         <i class="fa fa-times-circle"></i>
                                     </a>
