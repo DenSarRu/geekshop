@@ -2,34 +2,35 @@
 {% load static %}
 
 {% block content %}
-<form class="form-horizontal" action="{% url 'auth:edit' %}" method="post" enctype=multipart/form-data>
-        {% csrf_token %}
 <div class="container rounded bg-white mt-5 mb-5">
-    <div class="row">
-        <div class="col-md-3 border-right">
-            <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-                <img class="rounded-circle mt-5" width="150px" src="/media/{{ user.avatar|default:'user-placeholder.png' }}">
-                <span class="font-weight-bold">{{ user.first_name }}</span>
-                <span class="text-black-50">{{ user.email }}</span>
-                <span> </span>
-            </div>
-        </div>
-        <div class="col-md-5 border-right">
-            <div class="d-flex justify-content-between align-items-center mb-3">
-                <h4 class="text-right">Редактирование профиля</h4>
-            </div>
-            {{ edit_form.as_p }}
-            <div class="mt-5 text-center">
-                <button class="btn btn-primary profile-button" type="submit">Изменить профиль</button></div>
-            </div>
-        </div>
+    <form class="form-horizontal" action="{% url 'auth:edit' %}" method="post" enctype=multipart/form-data>
+        {% csrf_token %}
+            <div class="row">
+                <div class="col-md-5 border-right">
+                    <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                        <img class="rounded-circle mt-5" width="150px" src="/media/{{ user.avatar|default:'user-placeholder.png' }}">
+                        <span class="font-weight-bold">{{ user.first_name }}</span>
+                        <span class="text-black-50">{{ user.email }}</span>
+                        <span> </span>
+                    </div>
+                </div>
+                <div class="col border-right">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h4 class="text-right">Редактирование профиля</h4>
+                    </div>
+                    {{ edit_form.as_p }}
+                    <div class="mt-5 text-center">
+                        <button class="btn btn-primary profile-button" type="submit">Изменить профиль</button></div>
+                    </div>
+                </div>
+
+    </form>
+</div>
+    <div class="mt-5 text-center">
+            <button class="btn btn-round form-control ">
+            <a href="{% url 'main' %}" class="">
+                На главную
+            </a>
+        </button>
     </div>
-</form>
-
-    <button class="btn btn-round form-control">
-        <a href="{% url 'main' %}" class="">
-            На главную
-        </a>
-    </button>
-
 {% endblock %}

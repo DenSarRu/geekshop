@@ -3,7 +3,6 @@ import random
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import render, get_object_or_404
 
-from basketapp.models import Basket
 from mainapp.models import Product, ProductCategory
 
 menu_item = [
@@ -11,13 +10,6 @@ menu_item = [
     {'href': 'products:main', 'name': 'продукты'},
     {'href': 'contacts', 'name': 'контакты'},
 ]
-
-
-def basket_check(request):
-    basket = []
-    if request.user.is_authenticated:
-        basket = Basket.objects.filter(user=request.user)
-    return basket
 
 
 def get_hot_product():
@@ -59,7 +51,6 @@ def products(request, pk=None, page=1):
             'product_category_list': product_category_list,
             'category': category,
             'products_list': products_paginator,
-            'basket': basket_check(request),
         }
         return render(request, 'mainapp/products.html', context)
 
@@ -73,7 +64,6 @@ def products(request, pk=None, page=1):
         'products_list': products_list,
         'same_products': same_products,
         'hot_product': hot_product,
-        'basket': basket_check(request),
     }
 
     return render(request, 'mainapp/products.html', context)
@@ -95,6 +85,5 @@ def product(request, pk):
         'product_category_list': ProductCategory.objects.all(),
         'product': product,
         'same_products': get_same_product(product),
-        'basket': basket_check(request)
     }
     return render(request, 'mainapp/product.html', context)

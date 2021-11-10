@@ -473,7 +473,7 @@ td:first-child {
 	background-color: #fff;
 	height: 119px;
 	padding-left: 98px;
-	padding-right: 211px;
+	padding-right: 230px;
 	position: relative;
 }
 
@@ -486,7 +486,10 @@ td:first-child {
 .links-menu {
 	margin:	27px auto 0px;	
 	position: absolute;
+	left: 50%;
+    transform: translateX(-50%);
 }
+
 .links-menu li {
 	float: left;
 	list-style-type: none;

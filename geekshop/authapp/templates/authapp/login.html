@@ -2,20 +2,27 @@
 {% load static %}
 
 {% block content %}
-
-    <form class="form-horizontal" action="{% url 'auth:login' %}" method="post" enctype=multipart/form-data>
-        <div class="h2 text-center head"> Вход в систему </div>
-        {% csrf_token %}
-        {% if next %}
+<div class="row center py-4">
+    <div class="col-4"></div>
+    <div class="col-4">
+        <div class="col-4"></div>
+        <form class="form-horizontal" action="{% url 'auth:login' %}" method="post" enctype=multipart/form-data>
+            <div class="h2 text-center head"> Вход в систему</div>
+            {% csrf_token %}
+            {% if next %}
             <input type="hidden" name="next" value="{{ next }}">
-        {% endif %}
-        {{ login_form.as_p }}
-        <button type="submit" class="btn btn-primary">Войти</button>
-    </form>
+            {% endif %}
+            {{ login_form.as_p }}
+            <button type="submit" class="btn btn-primary">Войти</button>
+        </form>
+        <div class="col-4"></div>
+        <button class="btn btn-round form-control">
+            <a href="{% url 'auth:register' %}" class="">
+                зарегистрироваться
+            </a>
+        </button>
+    </div>
+    <div class="col-4"></div>
+</div>
 
-    <button class="btn btn-round form-control">
-        <a href="{% url 'auth:register' %}" class="">
-            зарегистрироваться
-        </a>
-    </button>
 {% endblock %}
