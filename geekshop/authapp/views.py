@@ -2,10 +2,11 @@ from datetime import timedelta
 
 from django.conf import settings
 from django.core.mail import send_mail
+from django.db import transaction
 from django.shortcuts import render, HttpResponseRedirect
 from django.utils.timezone import now
 
-from authapp.forms import ShopUserLoginForm, ShopUserRegisterForm, ShopUserEditForm
+from authapp.forms import ShopUserLoginForm, ShopUserRegisterForm, ShopUserEditForm, ShopUserProfileEditForm
 from django.contrib import auth
 from django.contrib import messages
 from django.urls import reverse
@@ -68,12 +69,15 @@ def register(request):
     return render(request, 'authapp/register.html', context)
 
 
+@transaction.atomic
 def edit(request):
     title = 'редактирование'
 
     if request.method == 'POST':
         edit_form = ShopUserEditForm(request.POST, request.FILES, instance=request.user)
-        if edit_form.is_valid():
+        profile_form = ShopUserProfileEditForm(request.POST, instance=request.user.shopuserprofile)
+
+        if edit_form.is_valid() and profile_form.is_valid():
             edit_form.save()
             messages.success(request, 'Profile updated successfully')
             return HttpResponseRedirect(reverse('auth:edit'))
@@ -82,10 +86,12 @@ def edit(request):
 
     else:
         edit_form = ShopUserEditForm(instance=request.user)
+        profile_form = ShopUserProfileEditForm(instance=request.user.shopuserprofile)
 
     context = {
         'title': title,
-        'edit_form': edit_form
+        'edit_form': edit_form,
+        'profile_form': profile_form,
     }
 
     return render(request, 'authapp/edit.html', context)

@@ -21,6 +21,15 @@
                 зарегистрироваться
             </a>
         </button>
+        <!--        <div>-->
+        <!--            <a href="#"><i class="fa fa-facebook"></i></a>-->
+        <!--            <a href="#"><i class="fa fa-skype"></i></a>-->
+        <!--        </div>-->
+        <button class="btn btn-round form-control social-likes__button">
+            <a href="{% url 'social:begin' 'vk-oauth2' %}?next=/">
+                <i class="fa fa-vk" aria-hidden="true"></i>
+            </a>
+        </button>
     </div>
     <div class="col-4"></div>
 </div>

@@ -3,7 +3,7 @@ import hashlib, random
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm
 
-from .models import ShopUser
+from .models import ShopUser, ShopUserProfile
 
 
 class ShopUserLoginForm(AuthenticationForm):
@@ -74,9 +74,13 @@ class ShopUserEditForm(UserChangeForm):
 
         return data
 
-    def clean_email(self):
-        entered_email = self.cleaned_data['email']
-        if ShopUser.objects.filter(email=entered_email).exists():
-            raise forms.ValidationError("Указанный email уже зарегистрирован в системе!")
 
-        return entered_email
+class ShopUserProfileEditForm(forms.ModelForm):
+    class Meta:
+        model = ShopUserProfile
+        fields = ('tagline', 'about_me', 'gender')
+
+    def __init__(self, *args, **kwargs):
+        super(ShopUserProfileEditForm, self).__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            field.widget.attrs['class'] = 'form-control'

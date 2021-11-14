@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 
-from authapp.models import ShopUser
+from authapp.models import ShopUser, ShopUserProfile
 from mainapp.models import ProductCategory, Product, Contacts
 
 import json, os
