@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'authapp',
     'adminapp',
     'basketapp',
+    'ordersapp',
 
     'social_django',
 ]
@@ -73,6 +74,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'basketapp.context_processors.basket',
+                'mainapp.context_processors.menu_item',
                 'social_django.context_processors.backends',
                 'social_django.context_processors.login_redirect',
             ],

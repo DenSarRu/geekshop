@@ -5,12 +5,6 @@ from django.shortcuts import render, get_object_or_404
 
 from mainapp.models import Product, ProductCategory
 
-menu_item = [
-    {'href': 'main', 'name': 'домой'},
-    {'href': 'products:main', 'name': 'продукты'},
-    {'href': 'contacts', 'name': 'контакты'},
-]
-
 
 def get_hot_product():
     products = Product.objects.all()
@@ -47,7 +41,6 @@ def products(request, pk=None, page=1):
 
         context = {
             'title': title,
-            'menu_item': menu_item,
             'product_category_list': product_category_list,
             'category': category,
             'products_list': products_paginator,
@@ -59,7 +52,6 @@ def products(request, pk=None, page=1):
 
     context = {
         'title': title,
-        'menu_item': menu_item,
         'product_category_list': product_category_list,
         'products_list': products_list,
         'same_products': same_products,
@@ -81,7 +73,6 @@ def product(request, pk):
 
     context = {
         'title': title,
-        'menu_item': menu_item,
         'product_category_list': ProductCategory.objects.all(),
         'product': product,
         'same_products': get_same_product(product),

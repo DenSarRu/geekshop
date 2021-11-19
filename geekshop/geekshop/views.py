@@ -1,13 +1,6 @@
 from django.shortcuts import render
 
-from basketapp.models import Basket
 from mainapp.models import Product, Contacts
-
-menu_item = [
-    {'href': 'main', 'name': 'домой'},
-    {'href': 'products:main', 'name': 'продукты'},
-    {'href': 'contacts', 'name': 'контакты'},
-]
 
 
 def main(request):
@@ -17,7 +10,6 @@ def main(request):
 
     context = {
         'title': title,
-        'menu_item': menu_item,
         'products': products,
     }
     return render(request, 'geekshop/index.html', context)
@@ -30,7 +22,6 @@ def contacts(request):
 
     context = {
         'title': title,
-        'menu_item': menu_item,
         'contact_list': contact_list,
     }
     return render(request, 'geekshop/contact.html', context)
