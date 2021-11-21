@@ -19,7 +19,7 @@ def get_same_product(hot_product):
 def products(request, pk=None, page=1):
     title = 'Каталог'
 
-    products_list = Product.objects.all().order_by('price')
+    products_list = Product.objects.all().filter(is_active=True).order_by('price')
     product_category_list = ProductCategory.objects.filter(is_active=True)
 
     if pk is not None:

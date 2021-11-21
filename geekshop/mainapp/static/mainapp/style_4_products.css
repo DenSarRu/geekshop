@@ -486,8 +486,6 @@ td:first-child {
 .links-menu {
 	margin:	27px auto 0px;	
 	position: absolute;
-	left: 50%;
-    transform: translateX(-50%);
 }
 
 .links-menu li {

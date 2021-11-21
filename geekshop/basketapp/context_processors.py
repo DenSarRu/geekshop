@@ -2,7 +2,7 @@ from basketapp.models import Basket
 
 
 def basket(request):
-    print('context_processor "basket" works!')
+    # print('context_processor "basket" works!')
 
     context_basket = []
 

@@ -2,38 +2,29 @@
 {% load static %}
 {% load my_tags %}
 
-{% block css %}
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"  integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="{% static '/geekshop/style.css' %}">
-    <link rel="stylesheet" href="{% static 'geekshop/fonts/font-awesome/css/font-awesome.css' %}">
-{% endblock %}
-
 {% block content %}
-		<div class="hero-white">
-			{% include 'geekshop\includes\inc_menu.html' %}
-		</div>
-{% include 'ordersapp/includes/inc_order_summary.html' %}
-<div class="basket_list">
-    {% for item in object.orderitems.select_related %}
-    <div class="basket_record">
-        <img src="{{ item.product.image|media_folder_products }}"
-             alt="{{ item.product.short_desc }}">
-        <span class="category_name">
+   {% include 'ordersapp/includes/inc_order_summary.html' %}
+   <div class="basket_list">
+       {% for item in object.orderitems.select_related %}
+           <div class="basket_record">
+               <img src="{{ item.product.image|media_folder_products }}"
+                    alt="{{ item.product.short_desc }}">
+               <span class="category_name">
                    {{ item.product.category.name }}
                </span>
-        <span class="product_name">{{ item.product.name }}</span>
-        <span class="product_price">
+               <span class="product_name">{{ item.product.name }}</span>
+               <span class="product_price">
                    {{ item.product.price }}&nbspруб
                </span>
-        <span class="product_quantitiy">
+               <span class="product_quantitiy">
                    x {{ item.quantity }} шт.
                </span>
-        <span class="product_cost">
+               <span class="product_cost">
                     = {{ item.get_product_cost }}&nbspруб
                </span>
-    </div>
-    {% endfor %}
-</div>
-{% include 'ordersapp/includes/inc_order_actions.html' %}
+           </div>
+       {% endfor %}
+   </div>
+   {% include 'ordersapp/includes/inc_order_actions.html' %}
 
 {% endblock %}

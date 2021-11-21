@@ -36,8 +36,9 @@
     <div class="details-products">
         <div class="details-slider">
             <div class="slider-product">
-                <a href="{% url 'products:detail' hot_product.pk %}"><img src="{{ hot_product.image|media_folder_products }}"
-                                                                          class="slider-image"></a>
+                <a href="{% url 'products:detail' hot_product.pk %}">
+                    <img src="{{ hot_product.image|media_folder_products }}" class="slider-image">
+                </a>
             </div>
             <div class="slider-control">
                 <div class="block">
@@ -61,9 +62,14 @@
             <h3 class="big-bold">{{ hot_product.name }}</h3>
             <h3 class="red">горячее предложение<br><br>действует {% now "SHORT_DATE_FORMAT" %}</h3>
             <p class="price"> {{ hot_product.price }} <span>руб</span></p>
-            <a href="{% url 'basket:add' hot_product.pk %}" class="red-button">
+            {% if hot_product.quantity > 0 %}
+                <a href="{% url 'basket:add' hot_product.pk %}" class="red-button">
                 заказать <i class="fa fa-chevron-right" aria-hidden="true"></i>
             </a>
+            {% else %}
+                <a href="#" class="red-button">
+                товар недоступен <i class="fa fa-chevron-right" aria-hidden="true"></i>
+            {% endif %}
             <div class="description-text">
                 <p>{{ hot_product.description }}</p>
             </div>
