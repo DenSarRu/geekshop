@@ -93,6 +93,11 @@ class Product(models.Model):
         verbose_name = 'Товар'
         verbose_name_plural = 'Товары'
 
+    @staticmethod
+    def get_items():
+        return Product.objects.filter(is_active=True, quantity__gte=1).\
+            order_by('category', 'name')
+
 
 class Contacts(models.Model):
     city = models.CharField(

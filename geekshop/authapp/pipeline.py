@@ -44,7 +44,6 @@ def save_user_profile(backend, user, response, *args, **kwargs):
             f.write(pic.content)
         user.avatar = filename
 
-
     if data['bdate']:
         bdate = datetime.strptime(data['bdate'], '%d.%m.%Y').date()
         age = timezone.now().date().year - bdate.year
