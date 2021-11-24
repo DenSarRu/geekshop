@@ -1,0 +1,64 @@
+{% load static %}
+
+<div class="header clearfix">
+    <a href="{% url 'main' %}" class="logo"></a>
+    <ul class="menu">
+        {% for item in menu_item %}
+        <a href="{% url item.href %}" class="{% if request.resolver_match.view_name == item.href %}
+						active
+						{%endif%}">{{ item.name }}</a>
+        {% endfor %}
+    </ul>
+    <div>
+        <div>
+            <a href="#" class="search"></a>
+        </div>
+        <div class="search search_text">Поиск</div>
+    </div>
+    <div>
+
+        <a href="{% url 'basket:main' %}" class="basket">
+            {% if basket %}
+				<span class="basket_text">
+					{{ basket.0.total_quantity }}
+				</span>
+            {% endif %}
+            <img src="{% static '/geekshop/img/basket' %}.png" alt="Корзина">
+        </a>
+        <div class="basket basket_text">
+            Корзина
+        </div>
+        {% if request.resolver_match.app_name != 'basketapp' %}
+        {% endif %}
+    </div>
+    {% if user.is_authenticated %}
+    <div>
+        <a class="dropdown-toggle user" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="{% static '/geekshop/img/user' %}.png" alt="">
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li><a class="dropdown-item" href="{% url 'auth:edit' %}">Профиль</a></li>
+            <li><a class="dropdown-item" href="{% url 'orders:main' %}">Заказы</a></li>
+            {% if user.is_superuser %}
+            <li><a class="dropdown-item" href="{% url 'admin_staff:users' %}">Админка</a></li>
+            {% endif %}
+            <li><a class="dropdown-item" href="{% url 'auth:logout' %}">Выйти</a></li>
+
+        </ul>
+    </div>
+    {% else %}
+    <div>
+        <a href="{% url 'auth:login' %}" class="user">
+            <img src="{% static '/geekshop/img/user' %}.png" alt="">
+        </a>
+    </div>
+    {% endif %}
+    <div class="user user_text">
+        {% if user.is_authenticated %}
+        {{ user.first_name }}
+        {% else %}
+        Войти
+        {% endif %}
+    </div>
+
+</div>

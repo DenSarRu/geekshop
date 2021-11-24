@@ -1,0 +1,56 @@
+[
+  {
+      "category": "Офис",
+      "name": "Lamp",
+      "image": "products_images/product-1.jpg",
+      "short_desc": "Теплый ламповый свет",
+      "description": "",
+      "price": "123.00",
+      "quantity": 22
+  },
+  {
+      "category": "Офис",
+      "name": "Стул высокого качества",
+      "image": "products_images/product-2.jpg",
+      "short_desc": "Стоит попробовать",
+      "description": "",
+      "price": "321.00",
+      "quantity": 5
+  },
+  {
+      "category": "Модерн",
+      "name": "Диффан",
+      "image": "products_images/product-3-sm.jpg",
+      "short_desc": "Мягкий серый диван",
+      "description": "",
+      "price": "34521.00",
+      "quantity": 6
+  },
+  {
+      "category": "Дом",
+      "name": "La Stol",
+      "image": "products_images/product-2-sm.jpg",
+      "short_desc": "Круглый стол",
+      "description": "Да-да... это стол - за ним едят",
+      "price": "1456.00",
+      "quantity": 2
+  },
+  {
+      "category": "Модерн",
+      "name": "Лампа в разводах",
+      "image": "products_images/product-11.jpg",
+      "short_desc": "Новый взгляд на свет",
+      "description": "не оторваться",
+      "price": "876.00",
+      "quantity": 12
+  },
+  {
+      "category": "Классика",
+      "name": "Стул повышенного качества",
+      "image": "products_images/product-21.jpg",
+      "short_desc": "такого вы ещё не пробовали",
+      "description": "вы не захотите вставать",
+      "price": "124.00",
+      "quantity": 3
+  }
+]

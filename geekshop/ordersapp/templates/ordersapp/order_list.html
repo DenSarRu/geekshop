@@ -1,0 +1,35 @@
+{% extends 'geekshop/base.html' %}
+{% load static %}
+
+{% block content %}
+		<div class="hero-white">
+			{% include 'geekshop\includes\inc_menu.html' %}
+		</div>
+	<div class="container row">
+		<table class="table" style="vertical-align: middle;">
+			<thead>
+				<tr>
+				  <th scope="col">id заказа</th>
+				  <th scope="col">Создан</th>
+				  <th scope="col">Обновлён</th>
+				  <th scope="col">Статус</th>
+				  <th scope="col">Действия с заказом</th>
+				</tr>
+			</thead>
+			<tbody class="">
+				{% include 'ordersapp/includes/inc_order_list.html' %}
+			</tbody>
+		</table>
+		<button class="btn btn-default btn-round">
+			<a href="{% url 'ordersapp:order_create' %}">
+				Новый заказ
+			</a>
+		</button>
+		<button class="btn btn-default btn-round">
+			<a href="{% url 'main' %}">
+				На главную
+			</a>
+		</button>
+
+	</div>
+{% endblock %}
