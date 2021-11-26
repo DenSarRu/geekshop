@@ -1,0 +1,33 @@
+{% for item in object_list %}
+{% if item.is_active %}
+<tr>
+    <td class="td1 orders_list">{{ item.pk }}</td>
+    <td>{{ item.created|date:"Y-m-d H:i:s" }}</td>
+    <td>{{ item.updated|date:"Y-m-d H:i:s" }}</td>
+    <td>{{ item.get_status_display }}</td>
+    <td>
+        <button type="button" class="btn btn-light">
+            <a href="{% url 'ordersapp:order_read' item.pk %}">
+                посмотреть
+            </a>
+        </button>
+
+        {% if item.status == 'FM' %}
+            <button type="button" class="btn btn-light">
+                <a href="{% url 'ordersapp:order_update' item.pk %}">
+                    редактировать
+                </a>
+            </button>
+        {% endif %}
+
+        {% if item.status == 'FM' %}
+            <button type="button" class="btn btn-light">
+                <a href="{% url 'ordersapp:order_delete' item.pk %}">
+                    удалить
+                </a>
+            </button>
+        {% endif %}
+    </td>
+</tr>
+{% endif %}
+{% endfor %}

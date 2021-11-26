@@ -1,0 +1,78 @@
+{% extends 'adminapp/base.html' %}
+{% load static %}
+
+{% block content %}
+<main>
+    <div class="container-fluid">
+        <h1 class="mt-4">Пользователи</h1>
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-table mr-1"></i>
+                Пользователи
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                        <tr>
+                            <th class="text-center">Имя пользователя</th>
+                            <th class="text-center">Детали</th>
+                            <th class="text-center">Редактировать</th>
+                            <th class="text-center">Персонал сайта</th>
+                            <th class="text-center">Активный</th>
+                            <th class="text-center">Последний вход</th>
+                            <th class="text-center">Удалить</th>
+                        </tr>
+                        </thead>
+                        <tfoot>
+                        <tr>
+                            <th class="text-center">Имя пользователя</th>
+                            <th class="text-center">Детали</th>
+                            <th class="text-center">Редактировать</th>
+                            <th class="text-center">Персонал сайта</th>
+                            <th class="text-center">Активный</th>
+                            <th class="text-center">Последний вход</th>
+                            <th class="text-center">Удалить</th>
+                        </tr>
+                        </tfoot>
+                        <tbody>
+                        {% for user in object_list %}
+                            <tr {% if not user.is_active %} style="opacity: 0.5;" {% endif %}>
+                                <td>{{ user.username }}</td>
+                                <td class="text-center"><a href="{% url 'admin_staff:user_read' user.id %}" style="color: dodgerblue">Подробная информация</a></td></td>
+                                <td class="text-center"><a href="{% url 'admin_staff:user_update' user.id %}" style="color: dodgerblue">Редактировать</a></td></td>
+                                <td class="text-center">
+                                    {% if user.is_staff %}
+                                        <i class="fa fa-check-circle"></i>
+                                    {% else %}
+                                        <i class="fa fa-times-circle"></i>
+                                    {% endif %}
+                                </td>
+                                <td class="text-center">
+                                    {% if user.is_active %}
+                                        <i class="fa fa-check-circle"></i>
+                                    {% else %}
+                                        <i class="fa fa-times-circle"></i>
+                                    {% endif %}
+                                </td>
+                                <td class="text-center">{{ user.last_login }}</td>
+                                <td class="text-center">
+                                    <a {% if not user.is_active %} class="invisible" {% endif %} href="{% url 'admin_staff:user_delete' pk=user.id %}">
+                                        <i class="fa fa-times-circle"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card-footer">
+                <a href="{% url 'adminapp:user_create' %}">
+                    <button class="btn btn-success">Создать пользователя</button>
+                </a>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

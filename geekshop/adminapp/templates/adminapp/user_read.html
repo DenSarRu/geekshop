@@ -1,0 +1,23 @@
+{% extends 'adminapp/base.html' %}
+{% load static %}
+{% load my_tags %}
+
+{% block content %}
+<div class="card" style="width: 18rem;">
+    <img src="{{ object.avatar|media_folder_users }}" class="card-img-top" alt="{{ object.username }}">
+    <div class="card-body">
+        <h5 class="card-title"><b>Имя пользователя:</b><br>{{ object.username }}</h5>
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item"><p class="card-text"><b>Имя:</b><br>{{ object.first_name }}</p></li>
+        <li class="list-group-item"><p class="card-text"><b>Фамилия:</b><br>{{ object.second_name }}</p></li>
+        <li class="list-group-item"><b>E-mail:</b><br>{{ object.email }}</li>
+        <li class="list-group-item"><b>Возраст:</b><br>{{ object.age }}</li>
+        <li class="list-group-item"><b>Кол-во на складе:</b><br>{{ object.quantity }}</li>
+        <li class="list-group-item"><a href="{% url 'admin_staff:user_update' user.id %}">Редактировать</a></li>
+        <li class="list-group-item"><a href="{% url 'admin_staff:users'%}">Назад</a></li>
+    </ul>
+    <div class="card-body">
+    </div>
+</div>
+{% endblock %}

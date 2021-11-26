@@ -1,0 +1,30 @@
+[
+  {
+      "city": "Саров",
+      "phone": "+7 83130 60000",
+      "email": "info@geekshop.ru",
+      "address": "ул. Духова, д. 11",
+      "description": ""
+  },
+  {
+      "city": "Москва",
+      "phone": "+7 495 495 495 49",
+      "email": "supershop@geekshop.ru",
+      "address": "МКАД недалеко",
+      "description": ""
+  },
+  {
+      "city": "Ярославль",
+      "phone": "+7 800 800 80 80",
+      "email": "mail@mail.mail",
+      "address": "PostOffice",
+      "description": ""
+  },
+  {
+      "city": "Los Angeles",
+      "phone": "+ 1 213 6166900",
+      "email": "shop_in_LA@geekshop.ru",
+      "address": "13609 Victory blvd, office 130",
+      "description": ""
+  }
+]
