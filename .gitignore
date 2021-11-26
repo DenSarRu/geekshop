@@ -3,3 +3,4 @@ env/
 *.pyc
 geekshop/.env
 geekshop/geekshop/.env
+geekshop/geekshop/db.sqlite3
