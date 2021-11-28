@@ -5,6 +5,7 @@ from mainapp.models import Product, Contacts
 
 def main(request):
     title = 'Магазин'
+    print('all')
 
     products = Product.objects.all()[:3]
 
