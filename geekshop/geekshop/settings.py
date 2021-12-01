@@ -202,7 +202,7 @@ SOCIAL_AUTH_PIPELINE = (
     'social_core.pipeline.user.user_details',
 )
 
-if DEBUG:
+if DEBUG == 'True':
     def show_toolbar(request):
         return True
 
