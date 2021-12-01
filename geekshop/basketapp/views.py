@@ -17,7 +17,7 @@ menu_item = [
 
 @login_required
 def basket(request):
-    basket = Basket.objects.filter(user=request.user)
+    basket = Basket.objects.filter(user=request.user).select_related()
 
     context = {
         'menu_item': menu_item,

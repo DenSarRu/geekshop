@@ -7,7 +7,7 @@ from mainapp.models import Product, ProductCategory
 
 
 def get_hot_product():
-    products = Product.objects.all()
+    products = Product.objects.all().select_related('category')
     return random.sample(list(products), 1)[0]
 
 
@@ -19,16 +19,17 @@ def get_same_product(hot_product):
 def products(request, pk=None, page=1):
     title = 'Каталог'
 
-    products_list = Product.objects.all().filter(is_active=True).order_by('price')
+    products_list = Product.objects.all().filter(is_active=True).order_by('price').select_related('category')
     product_category_list = ProductCategory.objects.filter(is_active=True)
 
     if pk is not None:
         if pk == 0:
-            products_list = Product.objects.filter(is_active=True, category__is_active=True)
+            products_list = Product.objects.filter(is_active=True, category__is_active=True).select_related()
             category = {'pk': 0, 'name': 'Все'}
         else:
             category = get_object_or_404(ProductCategory, pk=pk)
-            products_list = Product.objects.filter(category__pk=pk, is_active=True, category__is_active=True)
+            products_list = Product.objects.filter(category__pk=pk, is_active=True, category__is_active=True)\
+                .select_related('category')
 
         paginator = Paginator(products_list, 2)
 
@@ -73,7 +74,7 @@ def product(request, pk):
 
     context = {
         'title': title,
-        'product_category_list': ProductCategory.objects.all(),
+        'product_category_list': ProductCategory.objects.filter(is_active=True),
         'product': product,
         'same_products': get_same_product(product),
     }

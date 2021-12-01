@@ -1,5 +1,5 @@
 def menu_item(request):
-    print('context_processor "menu" works!')
+    # print('context_processor "menu" works!')
 
     context_menu_item = [
         {'href': 'main', 'name': 'домой'},

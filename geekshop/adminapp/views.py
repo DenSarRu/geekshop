@@ -152,11 +152,11 @@ def products(request, pk=None, page=1):
     title = 'админка/товары'
 
     if pk is None or pk == 0:
-        products_list = Product.objects.all().order_by('price')
+        products_list = Product.objects.all().order_by('price').select_related()
         category = {'pk': 0, 'name': 'Все'}
     else:
         category = get_object_or_404(ProductCategory, pk=pk)
-        products_list = Product.objects.filter(category__pk=pk).order_by('name')
+        products_list = Product.objects.filter(category__pk=pk).order_by('name').select_related()
 
     paginator = Paginator(products_list, 5)
 
