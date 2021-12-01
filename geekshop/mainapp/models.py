@@ -96,7 +96,7 @@ class Product(models.Model):
     @staticmethod
     def get_items():
         return Product.objects.filter(is_active=True, quantity__gte=1).\
-            order_by('category', 'name')
+            order_by('category', 'name').select_related()
 
 
 class Contacts(models.Model):
