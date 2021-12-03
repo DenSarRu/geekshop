@@ -4,3 +4,4 @@ env/
 geekshop/.env
 geekshop/geekshop/.env
 geekshop/geekshop/db.sqlite3
+geekshop/db.sqlite3

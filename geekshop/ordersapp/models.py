@@ -51,6 +51,16 @@ class Order(models.Model):
     def __str__(self):
         return f'Заказ {self.user.username} №{self.id} от {self.created}'
 
+    def get_items_cached(self):
+        return self.orderitems.select_related()
+
+    def get_summary(self):
+        items = self.get_items_cached()
+        return {
+            'total_cost': sum(list(map(lambda x: x.quantity * x.product.price, items))),
+            'total_quantity': sum(list(map(lambda x: x.quantity, items)))
+        }
+
     def get_total_quantity(self):
         items = self.orderitems.select_related()
         return sum(list(map(lambda x: x.quantity, items)))
@@ -64,7 +74,7 @@ class Order(models.Model):
         return sum(list(map(lambda x: x.quantity * x.product.price, items)))
 
     def delete(self):
-        for item in self.orderitems.select_related():
+        for item in self.get_items_cached():
             item.product.quantity += item.quantity
             item.product.save()
 

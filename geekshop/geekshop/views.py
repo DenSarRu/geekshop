@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.views.decorators.cache import cache_page
 
 from mainapp.models import Product, Contacts
 
@@ -16,6 +17,7 @@ def main(request):
     return render(request, 'geekshop/index.html', context)
 
 
+@cache_page(3600)
 def contacts(request):
     title = 'Контакты'
 
