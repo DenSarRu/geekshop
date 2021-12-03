@@ -5,7 +5,7 @@ from django.conf import settings
 from django.core.cache import cache
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import render, get_object_or_404
-from django.views.decorators.cache import cache_page
+from django.views.decorators.cache import cache_page, never_cache
 
 
 def get_product_category_list():
@@ -145,7 +145,7 @@ def products(request, pk=None, page=1):
 #     print(pk)
 #     return render(request, 'mainapp/products.html')
 
-# @cache_page(3600)
+@never_cache
 def product(request, pk):
     title = 'Описание товара'
 
