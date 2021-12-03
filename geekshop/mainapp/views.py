@@ -1,11 +1,12 @@
 import random
 
-from mainapp.models import Product, ProductCategory
 from django.conf import settings
 from django.core.cache import cache
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import render, get_object_or_404
-from django.views.decorators.cache import cache_page, never_cache
+from django.views.decorators.cache import never_cache
+
+from mainapp.models import Product, ProductCategory
 
 
 def get_product_category_list():
@@ -44,7 +45,7 @@ def get_products_order_by_price():
             cache.set(key, products)
         return products
     else:
-        return Product.objects.filter(is_active=True, category__is_active=True, quantity__gte=1).\
+        return Product.objects.filter(is_active=True, category__is_active=True, quantity__gte=1). \
             order_by('price').select_related('category')
 
 
@@ -88,12 +89,18 @@ def get_product(pk):
 
 def get_hot_product():
     products = get_products()
-    return random.sample(list(products), 1)[0]
+    if len(products):  # если база не пуста и в выборке что-то есть, то передаем выборку продуктов
+        return random.sample(list(products), 1)[0]
+    else:
+        return 0  # иначе вернем ноль
 
 
 def get_same_product(hot_product):
-    same_products = Product.objects.filter(category=hot_product.category).exclude(pk=hot_product.pk)[:3]
-    return same_products
+    if not hot_product:  # если прилетел ноль
+        return 0
+    else:
+        same_products = Product.objects.filter(category=hot_product.category).exclude(pk=hot_product.pk)[:3]
+        return same_products
 
 
 def products(request, pk=None, page=1):
