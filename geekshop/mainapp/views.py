@@ -148,10 +148,6 @@ def products(request, pk=None, page=1):
     return render(request, 'mainapp/products.html', context)
 
 
-# def category(request, pk=None):
-#     print(pk)
-#     return render(request, 'mainapp/products.html')
-
 @never_cache
 def product(request, pk):
     title = 'Описание товара'
