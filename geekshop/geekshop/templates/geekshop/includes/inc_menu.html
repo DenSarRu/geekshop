@@ -58,7 +58,7 @@
     {% endif %}
     <div class="user user_text">
         {% if user.is_authenticated %}
-            {{ user.first_name }}
+            {{ user.first_name|default:'Пользователь' }}
         {% else %}
             Войти
         {% endif %}

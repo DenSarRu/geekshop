@@ -137,7 +137,6 @@ def product_quantity_update_save(sender, update_fields, instance, **kwargs):
     print('продуктов на складе: ', instance.product.quantity)
     print('продуктов в instance.quantity: ', instance.quantity)
     if (update_fields is 'quantity' or 'product') and instance.product.quantity > 0:
-        # print('продуктов в sender.get_item(instance.pk).quantity: ', sender.get_item(instance.pk).quantity)
         if instance.pk:
             instance.product.quantity -= instance.quantity - sender.get_item(instance.pk).quantity
         else:
