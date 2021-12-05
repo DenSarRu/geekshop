@@ -96,7 +96,7 @@ def get_hot_product():
 
 
 def get_same_product(hot_product):
-    if not hot_product:  # если прилетел ноль
+    if not hot_product:  # если "прилетел" ноль
         return 0
     else:
         same_products = Product.objects.filter(category=hot_product.category).exclude(pk=hot_product.pk)[:3]
